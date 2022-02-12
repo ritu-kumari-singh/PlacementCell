@@ -1,0 +1,92 @@
+<html>
+    <head>
+        <title>
+            <%=title%>
+        </title>
+        <link rel="stylesheet" type="text/css" href="/css/style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css" />
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.4/jquery.ui.position.min.js"></script>
+    </head>
+    <body>
+        <%- include('_header'); %>
+        <button id="add_new_interview" style="top:10px;width:fit-content;" class="custom_button hover_button" title="Add new Interview">+ New Interview</button></a>
+        <button id="add_student" style="top:10px;width:fit-content;" class="custom_button hover_button" title="Add student to Interview">+ Add student to Interview</button></a>       
+        <div id="interview_list" style="margin:40px;">
+            <% for(let interview of interviewList) {%>
+                <button class="collapsible"><%= interview.company %>&nbsp&nbsp Date : <%= interview.date %> &nbsp&nbsp( Students : &nbsp<%=interview.students.length %> )</button>
+                <div class="content">
+                    <ol>
+                        <% for(var i=0;i < interview.students.length; i++) {%>
+                            <li style="text-align: left;padding:5px;">
+                                <%= interview.students[i].name %> ( <%= interview.students[i].email %> ) 
+                                <span>Result : <%= interview.results[i] %> </span>
+                                <div style="display:none;;width:fit-content;">
+                                    <select name="result" style="height:20px;">
+                                        <option value="Pass">Pass</option>
+                                        <option value="Fail">Fail</option>
+                                        <option value="On Hold">On Hold</option>
+                                        <option value="Not Attempted">Did Not Attempt</option>
+                                    </select>
+                                    <i class="fa fa-check" aria-hidden="true" data-studentid="<%= interview.students[i]._id %>" data-interviewid="<%= interview._id %>" style="color:greenyellow;cursor:pointer;" title="Update result"></i> 
+                                </div>
+                                <i class="fa fa-pencil" title="edit result" style="cursor:pointer;"></i>
+                            </li>
+                        <%}%>
+                    </ol>
+                </div>
+            <%}%>
+        </div>
+        <div id="new_interview_form" style="display: none;padding:20px;">
+            <form action="/users/interviews/create_interview" method="post">
+                <div class="flex column spaced" style="height:fit-content;">
+                    <div class="flex row">
+                        <label>Company Name</label>
+                        <input type="text" name="company" placeholder="Enter company name" required>
+                    </div>
+                    <div class="flex row">
+                        <label>Date of Interview</label>
+                        <input type="date" name="date" required>
+                    </div>
+                    <button class="custom_button" style="top:10px;">ADD INTERVIEW</button>
+                </div>           
+            </form>
+        </div> 
+        <div id="student_to_interview_form" style="display: none;padding:20px;">
+            <form action="/users/interviews/student_to_interview" method="post">
+                <div class="flex column spaced" style="height:fit-content;">
+                    <div class="flex row">
+                        <label>Interview</label>
+                        <select name="interviewId">
+                            <% for(let interview of interviewList) {%>
+                                <option value="<%= interview._id%>"><%= interview.company %>&nbsp&nbsp Date : <%= interview.date %></option>
+                            <%}%>
+                        </select>
+                    </div>
+                    <div class="flex row">
+                        <label>Student List</label>
+                        <select name="studentId">
+                            <% for(let student of studentList) {%>
+                                <option value="<%= student._id%>"><%= student.name %>&nbsp( <%= student.email %> )</option>
+                            <%}%>
+                        </select>
+                    </div>
+                    <div class="flex row">
+                        <label>Result</label>
+                        <select name="result">
+                            <option value="Pass">Pass</option>
+                            <option value="Fail">Fail</option>
+                            <option value="On Hold">On Hold</option>
+                            <option value="Not Attempted">Did Not Attempt</option>
+                        </select>
+                    </div>
+                    <button class="custom_button" style="top:10px;">ADD STUDENT</button>
+                </div>           
+            </form>
+        </div>   
+    <script type="text/javascript" src="/js/script.js"></script>     
+    <script type="text/javascript" src="/js/interview.js"></script>     
+    </body>
+</html>

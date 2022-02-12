@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <title>
+            <%=title%>
+        </title>
+        <link rel="stylesheet" type="text/css" href="/css/style.css">
+    </head>
+    <body>
+        <% if(flash.success && flash.success.length > 0) {%>
+            <h3 style="color: green;"><%= flash.success %></h3>
+        <%}%>
+        <% if(flash.error && flash.error.length > 0) {%>
+            <h3 style="color: red;"><%= flash.error %></h3>
+        <%}%>
+        <h1>Welcome</h1>
+        <h1>To</h1>
+        <h1>TEAM CAREER CAMP</h1>
+        <a href="/users/signIn"><button class="custom_button">SIGN IN</button></a>
+        <h2>OR</h2>
+        <a href="users/signUp"><button class="custom_button">SIGN UP</button></a>     
+    </body>
+</html>

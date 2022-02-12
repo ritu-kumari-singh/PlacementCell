@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <title>
+            <%=title%>
+        </title>
+        <link rel="stylesheet" type="text/css" href="/css/style.css">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css" />
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.4/jquery.ui.position.min.js"></script>
+    </head>
+    <body>
+        <%- include('_header'); %>
+        <% if(flash.success && flash.success.length > 0) {%>
+            <h3 style="color: green;"><%= flash.success %></h3>
+        <%}%>
+        <% if(flash.error && flash.error.length > 0) {%>
+            <h3 style="color: red;"><%= flash.error %></h3>
+        <%}%>
+        <div id="jobs_list" style="margin:40px;">
+        </div>
+        <script type="text/javascript" src="/js/script.js"></script>
+        <script type="text/javascript" src="/js/jobs.js"></script>     
+    </body>
+</html>

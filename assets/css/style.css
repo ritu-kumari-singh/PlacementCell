@@ -1,0 +1,83 @@
+body {
+    background-color : #9facb3;
+    font-family: monospace;
+    text-align: center;
+}
+h1 {
+    font-size: 50px;
+    font-weight : 900;
+}
+.flex {
+    display: flex;
+}
+.row {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.column {
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+label {
+    width : 120px;
+    font-size: 20px;
+    font-weight: 600;
+}
+input, select {
+    height : 40px;
+    border : 2px solid black;
+    width : 250px;
+}
+.custom_button {
+    border: none;
+    background-color: rgb(17, 12, 87);
+    padding: 5px 15px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+    width: 150px;
+    height : 50px;
+    position: relative;
+    cursor: pointer;
+    color : white;
+    border-radius: 5px;
+}
+nav {
+    background-color: rgb(17, 12, 87);
+    color : white;
+}
+.hover_button:hover {
+    background-color: rgb(40, 30, 180);
+    text-decoration: underline;
+}
+
+.collapsible {
+    background-color: #777;
+    color: white;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    margin-top : 10px;
+}
+  
+.active, .collapsible:hover {
+    background-color: #555;
+}
+  
+.content {
+    padding: 0 18px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    background-color: #f1f1f1;
+}
+.spaced > div {
+    margin-top : 10px;
+    margin-bottom: 10px;
+}

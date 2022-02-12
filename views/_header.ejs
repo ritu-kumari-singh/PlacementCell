@@ -1,0 +1,13 @@
+<nav class="flex row">
+    <a href="/users/dashboard"><button class="custom_button hover_button" title="Go to dashboard">HOME</button></a>
+    <a href="/users/students"><button class="custom_button hover_button" title="Go to students list">STUDENTS</button></a>
+    <a href="/users/interviews"><button class="custom_button hover_button" title="Go to interviews list">INTERVIEWS</button></a>
+    <a href="/users/jobs"><button class="custom_button hover_button" title="Go to jobs list">JOBS</button></a>
+    <a href="/users/signOut"><button class="custom_button hover_button" title="Sign Out">SIGN OUT</button></a>
+</nav>
+<% if(flash.success && flash.success.length > 0) {%>
+    <h3 style="color: green;"><%= flash.success %></h3>
+<%}%>
+<% if(flash.error && flash.error.length > 0) {%>
+    <h3 style="color: red;"><%= flash.error %></h3>
+<%}%>

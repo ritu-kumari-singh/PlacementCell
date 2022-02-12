@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <title>
+            <%=title%>
+        </title>
+        <link rel="stylesheet" type="text/css" href="/css/style.css">  
+    </head>
+    <body>
+        <% if(flash.success && flash.success.length > 0) {%>
+            <h3 style="color: green;"><%= flash.success %></h3>
+        <%}%>
+        <% if(flash.error && flash.error.length > 0) {%>
+            <h3 style="color: red;"><%= flash.error %></h3>
+        <%}%>
+        <h1>Sign Up</h1>
+        <form action="/users/create" method="post">
+            <div class="flex column" style="height:350px;">
+                <div class="flex row">
+                    <label>Name</label>
+                    <input type="text" name="name" placeholder="Enter your name">
+                </div>
+                <div class="flex row">
+                    <label>Email</label>
+                    <input type="email" name="email" placeholder="Enter your email">
+                </div>
+                <div class="flex row">
+                    <label>Password</label>
+                <input type="password" name="password" placeholder="Enter your password">
+                </div>
+                <div class="flex row">
+                    <label>Confirm Password</label>
+                <input type="password" name="confirm_password" placeholder="Confirm your password">
+                </div>
+                <button class="custom_button">SIGN UP</button>
+            </div>           
+        </form>     
+    </body>
+</html>

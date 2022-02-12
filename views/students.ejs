@@ -1,0 +1,100 @@
+<html>
+    <head>
+        <title>
+            <%=title%>
+        </title>
+        <link rel="stylesheet" type="text/css" href="/css/style.css">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css" />
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.4/jquery.ui.position.min.js"></script>
+    </head>
+    <body>
+        <%- include('_header'); %>
+        <button id="add_new_student" style="top:10px;width:fit-content;" class="custom_button hover_button" title="Add new Student">+ Add new Student</button></a>
+        <button id="download_all_data" style="top:10px;width:fit-content;" class="custom_button hover_button" title="Download All Student's Data">Download All Data</button></a>
+        <div id="student_list" style="margin:40px;">
+            <% for(let student of studentList) {%>
+                <button class="collapsible"><%= student.name %> ( Status : <%= student.status %> )</button>
+                <div class="content">
+                    <div class="flex column">
+                        <p>Email : <%= student.email %></p>
+                        <p>College : <%= student.college %></p>
+                        <p>Graduation Year : <%= student.graduation_year%></p>
+                        <p>Contact no. : <%= student.mobile_no %></p>
+                        <p>Gender : <%= student.gender %></p>
+                        <p>DSA Final Score : <%= student.dsa %></p>
+                        <p>WEB-D Final Score : <%= student.web_d %></p>
+                        <p>React Final Score : <%= student.react %></p>  
+                        <p>Interview Details</p>
+                        <% for(var i=0;i < student.interviews.length; i++) {%>
+                            <div class="flex row">
+                                <p>Company : <%= student.interviews[i].company %> &nbsp</p>
+                                <p>Date : <%= student.interviews[i].date %> &nbsp</p>
+                                <% let index = student.interviews[i].students.indexOf(student._id) %>
+                                <p>Result : <%= student.interviews[i].results[index] %></p>
+                            </div>
+                        <%}%>  
+                        <button style="margin-bottom: 10px;width:fit-content;" class="download custom_button hover_button" data-id="<%= student._id%>">Download CSV</button>                  
+                    </div>
+                </div>
+            <%}%>
+        </div>
+        <div id="new_student_form" style="display: none;padding:20px;">
+            <form action="/users/students/create_student" method="post">
+                <div class="flex column spaced" style="height:fit-content;">
+                    <div class="flex row">
+                        <label>Student's Name</label>
+                        <input type="text" name="name" placeholder="Enter name" required>
+                    </div>
+                    <div class="flex row">
+                        <label>Student's Email</label>
+                        <input type="email" name="email" placeholder="Enter email" required>
+                    </div>
+                    <div class="flex row">
+                        <label>College</label>
+                    <input type="text" name="college" placeholder="Enter college" required>
+                    </div>
+                    <div class="flex row">
+                        <label>Graduation year</label>
+                    <input type="number" name="graduation_year" min="2016" max="2030" required>
+                    </div>
+                    <div class="flex row">
+                        <label>Mobile No.</label>
+                        <input type="tel" name="mobile_no" patter="[0-9]{10}" required>
+                    </div>
+                    <div class="flex row">
+                        <label>Gender</label>
+                        <select name="gender">
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>
+                    <h2>Final Scores</h2>
+                    <div class="flex row">
+                        <label>DSA</label>
+                        <input type="number" name="dsa" min="0" max="100" required>
+                    </div>
+                    <div class="flex row">
+                        <label>WEB-D</label>
+                        <input type="number" name="web_d" min="0" max="100" required>
+                    </div>
+                    <div class="flex row">
+                        <label>React</label>
+                        <input type="number" name="react" min="0" max="100" required>
+                    </div>
+                    <div class="flex row">
+                        <label>Status</label>
+                        <select name="status">
+                            <option value="Placed">Placed</option>
+                            <option value="Not Placed">Not Placed</option>
+                        </select>
+                    </div>
+                    <button class="custom_button" style="top:10px;">ADD STUDENT</button>
+                </div>           
+            </form>
+        </div> 
+    <script type="text/javascript" src="/js/script.js"></script>   
+    <script type="text/javascript" src="/js/student.js"></script>   
+    </body>
+</html>
