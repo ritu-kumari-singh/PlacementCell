@@ -38,7 +38,7 @@ https://docs.mongodb.com/v3.2/tutorial/install-mongodb-on-ubuntu/
 
 1. Clone Repo
 ```
-$ git clone 
+$ git clone https://github.com/ritu-kumari-singh/PlacementCell
 ```
 2. Change Directory
 ```
